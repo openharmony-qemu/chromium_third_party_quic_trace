@@ -1,37 +1,70 @@
-# chromium_third_party_quic_trace
+# QUIC trace utilities
 
-#### 介绍
-第三方软件quic_trace
+This repository contains a format for recording a trace of QUIC connection,
+together with the tools for analyzing the resulting traces.  This format of
+traces is currently partially supported by Chromium, and we hope for more
+implementations to adopt it in the future.
 
-#### 软件架构
-软件架构说明
+The primary focus of this format is debugging congestion-control related
+issues, but other transport aspects (e.g. flow control) and transport-related
+aspects of the application (e.g. annotations for the types of data carried by
+the streams) are also within the scope.
 
+## How to record this format
 
-#### 安装教程
+The traces are represented as a Protocol Buffer, which is completely described
+in `lib/quic_trace.proto`.  Projects that use Bazel can embed this repository
+directly and use the provided Bazel rules.
 
-1.  xxxx
-2.  xxxx
-3.  xxxx
+## OpenGL-based renderer
 
-#### 使用说明
+This repository contains two different tools to visualize the trace:
 
-1.  xxxx
-2.  xxxx
-3.  xxxx
+1. A simple gnuplot-based trace renderer.
+1. A fully featured OpenGL-based renderer.
 
-#### 参与贡献
+The OpenGL-based is the current preferred way of rendering traces.  It supports
+Linux and macOS, though Windows support is coming soon.  OpenGL 3.3 or later is
+required.  Most of its dependencies are shipped using Bazel build files, but for
+Linux, system SDL2 is used.
 
-1.  Fork 本仓库
-2.  新建 Feat_xxx 分支
-3.  提交代码
-4.  新建 Pull Request
+![OpenGL renderer screenshot](examples/screenshot.png)
 
+### Build instructions
 
-#### 特技
+Building trace renderer on Linux:
 
-1.  使用 Readme\_XXX.md 来支持不同的语言，例如 Readme\_en.md, Readme\_zh.md
-2.  Gitee 官方博客 [blog.gitee.com](https://blog.gitee.com)
-3.  你可以 [https://gitee.com/explore](https://gitee.com/explore) 这个地址来了解 Gitee 上的优秀开源项目
-4.  [GVP](https://gitee.com/gvp) 全称是 Gitee 最有价值开源项目，是综合评定出的优秀开源项目
-5.  Gitee 官方提供的使用手册 [https://gitee.com/help](https://gitee.com/help)
-6.  Gitee 封面人物是一档用来展示 Gitee 会员风采的栏目 [https://gitee.com/gitee-stars/](https://gitee.com/gitee-stars/)
+1. Install SDL2 with headers (`libsdl2-dev` on Debian and related systems).
+1. Install OpenGL headers (on Debian, `libsdl2-dev` pulls those in).
+1. Install Bazel from https://bazel.build
+1. Build the renderer by running `bazel build -c opt //tools/render/...`
+1. Run the renderer by running, for example,
+   `bazel-bin/tools/render/render_trace examples/example.qtr`.
+
+Building trace renderer on macOS:
+1. Install Bazel from https://bazel.build
+1. Build the renderer by running `bazel build -c opt --apple_platform_type=macos
+   --cpu=darwin_x86_64 //tools/render/...`
+1. Run the renderer by running, for example,
+   `bazel-bin/tools/render/render_trace examples/example.qtr`.
+
+Note that macOS build requires a specific set of flags, because by default Bazel
+on macOS targets iOS.
+
+### Scalability
+
+The OpenGL-based renderer was built with the goal of rendering large traces in
+mind, and our testing has shown that it performs quite well with traces as large
+as 120MiB worth of data transferred (that's approximately 90,000 packets sent),
+even when ran on a machine with high-resolution screen and an integrated GPU.
+
+## Legacy gnuplot-based renderer
+
+This rendering script was originally built as a simple proof of concept for
+rendering the trace format, but still might be useful if other tools are not
+available.  Instructions:
+
+1. Build the helper tool by running `bazel build
+   //tools/quic_trace_to_time_sequence_gnuplot`.
+1. Generate the graph by running `tools/time_sequence_gnuplot.sh trace_file
+   trace.png`.
