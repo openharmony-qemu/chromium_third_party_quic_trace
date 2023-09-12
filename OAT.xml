@@ -3,47 +3,39 @@
     <oatconfig>
         <policylist>
             <policy name="projectPolicy" desc="">
-                <policyitem type="compatibility" name="Nigel Stewart" path="fonts.*" desc="" /> 
-                <policyitem type="compatibility" name="Milan Ikits" path="GL.*" desc="" />
-                <policyitem type="compatibility" name="Nigel Stewart" path="third_party.*" desc="" /> 
             </policy>
         </policylist>
         <filefilterlist>
             <filefilter name="defaultPolicyFilter"
                 desc="Filters for compatibility,license header policies">
-                <filteritem type="filepath" name="third_party/llvm-10.0/llvm/include/llvm/Support/LICENSE.TXT"
-                    desc="" />
-                <filteritem type="filepath" name="third_party/SPIRV-Tools/BUILD.bazel"
-                    desc="" />
-                <filteritem type="filepath" name="third_party/llvm-subzero/LICENSE.TXT"
-                    desc="" />
-                <filteritem type="filepath" name="third_party/subzero/LICENSE.TXT"
-                    desc="" />
-                <filteritem type="filepath" name="third_party/subzero/bloat/README.chromium"
-                    desc="" />
-                <filteritem type="filepath" name="third_party/llvm-10.0/Android.bp"
-                    desc="" />
-                <filteritem type="filepath" name="third_party/SPIRV-Headers/BUILD.bazel"
-                    desc="" />
                 <filteritem type="filepath" name="README.OpenSource"
                     desc="" />
             </filefilter>
             <filefilter name="defaultFilter">
                 <filteritem type="filepath" name="README.OpenSource"
                     desc="" />
+                <filteritem type="filepath" name="third_party/fonts/DroidSans.ttf"
+                    desc="" />
+                <filteritem type="filepath" name="examples/example.json.gz"
+                    desc="" />
+                <filteritem type="filepath" name="examples/example.qtr"
+                    desc="" />
+                <filteritem type="filepath" name="examples/screenshot.png"
+                    desc="" />
             </filefilter> 
         </filefilterlist> 
         <licensematcherlist>
-            <licensematcher name="Nigel Stewart" desc="">
+            <licensematcher name="BSD-3-Clause" desc="">
                 <licensetext name="
-                ** Copyright (C) 2008-2017, Nigel Stewart 
+                * Redistributions of source code must retain the above copyright notice, 
+                **   this list of conditions and the following disclaimer.
+                ** * Redistributions in binary form must reproduce the above copyright notice, 
+                **   this list of conditions and the following disclaimer in the documentation 
+                **   and/or other materials provided with the distribution.
+                ** * The name of the author may be used to endorse or promote products 
+                **   derived from this software without specific prior written permission.
             " desc="" />
             </licensematcher>
         </licensematcherlist>
-        <licensematcher name="Milan Ikits" desc="">
-                <licensetext name="
-                ** Copyright (C) 2002-2008, Milan Ikits
-            " desc="" />
-            </licensematcher>
     </oatconfig>
 </configuration>

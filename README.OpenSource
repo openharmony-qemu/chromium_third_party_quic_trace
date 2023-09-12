@@ -1,7 +1,7 @@
 [
     {
-        "Name": "chromium_third_party_quic_trace",                   # 上游开源软件名全称
-        "License":"Milan Ikits"  ,"Nigel Stewart"         # 上游开源软件中包含的许可证信息
+        "Name": "quic_trace",                   # 上游开源软件名全称
+        "License":"BSD-3-Clause"        # 上游开源软件中包含的许可证信息
         "License File": "LICENSE"    # 许可证所在文件路径
         "Version Number": "413c3a4a641c014193eabb8d282c2348ccec3c5b9",
         "Upstream URL": "https://chromium.googlesource.com/external/github.com/google/quic-trace.git@413c3a4a641c014193eabb8d282c2348ccec3c5b",   # 上游软件包发布地址
