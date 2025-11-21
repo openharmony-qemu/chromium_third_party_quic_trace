@@ -1,0 +1,11 @@
+[
+    {
+        "Name": "quic_trace",
+        "License":"Apache-2.0",
+        "License File": "LICENSE",
+        "Version Number": "413da873d93a03d3662f24b881ea459a79f9c589",
+        "Owner": "huamengzheng@huawei.com",
+        "Upstream URL": "https://chromium.googlesource.com/external/github.com/google/quic-trace.git@413c3a4a641c014193eabb8d282c2348ccec3c5b",
+        "Description": "第三方软件quic_trace，一种多路复用和安全的通用传输"
+    }
+]
